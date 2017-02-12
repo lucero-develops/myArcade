@@ -27,7 +27,7 @@ Enemy.prototype.render = function() {
 var player = new Enemy();
 // This class requires an update(), render() and
 // a handleInput() method.
-
+player.render();
 
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
@@ -35,7 +35,8 @@ var player = new Enemy();
 
 //added this object to help clear error in the console
 // added new Enemy objects  off of a hint from a video
-var allEnemies ={new Enemy(), new Enemy(), new Enemy()};
+//var allEnemies ={new Enemy(), new Enemy(), new Enemy()
+var allEnemies ={};
 
 
 // This listens for key presses and sends the keys to your
