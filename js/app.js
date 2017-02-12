@@ -36,7 +36,7 @@ player.render();
 //added this object to help clear error in the console
 // added new Enemy objects  off of a hint from a video
 //var allEnemies ={new Enemy(), new Enemy(), new Enemy()
-var allEnemies ={};
+var allEnemies = [new Enemy(), new Enemy(),new Enemy()];
 
 
 // This listens for key presses and sends the keys to your
@@ -51,3 +51,6 @@ document.addEventListener('keyup', function(e) {
 
     player.handleInput(allowedKeys[e.keyCode]);
 });
+
+
+Engine();
