@@ -37,15 +37,32 @@ Enemy.prototype.render = function() {
 
 /* building the Player class this way seems 
 more sucure/ correct way rather than 
-    var player = new Enemy(500,500);
-    player.sprite = 'images/star.png';
+    var player = new Enemy(x,y,sprite);
 but I really dont fully understand how the created 
 instance above would have any cons ...
 */
 
 var Player = function(x,y,sprite){
     Enemy.call(this,x,y, sprite);
-}
+};
+
+Player.prototype = Object.create(Enemy.prototype);
+
+//I shouldn't have to create the render() method
+//because no change is needed from Enemy.render
+
+Player.prototype.update = function() {
+    /* thinking about the Player class the 
+    only thing to update at the moment would be 
+    x and y cordinates. */
+
+    this.x = this.x;
+    this.y = this.y;
+
+    //My thinking is that the scope with catch
+    //Players x and y values
+};
+
 
 // This class requires an update(), render() and
 // a handleInput() method.
