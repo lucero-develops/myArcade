@@ -62,6 +62,7 @@ Player.prototype.update = function() {
     //My thinking is that the scope with catch
     //Players x and y values
 };
+//console log is saying this isn't a function.
 
 
 // This class requires an update(), render() and
@@ -72,8 +73,13 @@ Player.prototype.update = function() {
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
 
-// 
-var allEnemies = [];
+// Testing this , not thinking of Enemy now 
+// I'm am just trying to get the clear all the errors in
+//the console log
+var E1 = new Enemy();
+var E2 = new Enemy();
+var allEnemies =[E1,E2];
+
 
 
 // This listens for key presses and sends the keys to your
