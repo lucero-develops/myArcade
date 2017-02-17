@@ -1,5 +1,5 @@
 // Enemies our player must avoid
-var Enemy = function(x,y) {
+var Enemy = function(x,y,sprite) {
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
 
@@ -34,6 +34,18 @@ Enemy.prototype.render = function() {
 // Now write your own player class
 
 //creating an instance of the Enemy class
+
+/* building the Player class this way seems 
+more sucure/ correct way rather than 
+    var player = new Enemy(500,500);
+    player.sprite = 'images/star.png';
+but I really dont fully understand how the created 
+instance above would have any cons ...
+*/
+
+var Player = function(x,y,sprite){
+    Enemy.call(this,x,y, sprite);
+}
 
 // This class requires an update(), render() and
 // a handleInput() method.
