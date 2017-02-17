@@ -43,8 +43,10 @@ instance above would have any cons ...
 */
 
 var Player = function(x,y,sprite){
-    Enemy.call(this,x,y, sprite);
+    Enemy.call(this,x,y,sprite);
 };
+// This class requires an update(), render() and
+// a handleInput() method.
 
 Player.prototype = Object.create(Enemy.prototype);
 
@@ -62,11 +64,32 @@ Player.prototype.update = function() {
     //My thinking is that the scope with catch
     //Players x and y values
 };
-//console log is saying this isn't a function.
+//console log is saying this isn't a function...
+
+Player.prototype.handleInput = function() {
+    //thinking about what this has to do a switch statment
+    //seems nice and simple , this    should work , also 
+    //again hoping x and y  are within scoop
+
+    switch(this){
+        case 'left':
+            this.x--;
+            break;
+        case 'up':
+            this.y--;
+            break;
+        case 'right':
+            this.x++;
+            break;
+        case 'down':
+            this.y++;
+            break;
+        
+    }
+
+};
 
 
-// This class requires an update(), render() and
-// a handleInput() method.
 
 
 // Now instantiate your objects.
