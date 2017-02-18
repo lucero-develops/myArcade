@@ -26,7 +26,7 @@ Enemy.prototype.update = function(dt) {
 
     //Some research on requestAnimationFrame lead me to 
     //test this possible solution 
-	this.x += 10 * dt; // Increase 'x' by 10 units per millisecond
+	this.x += 1000 * dt; // Increase 'x' by units per millisecond
 
 };
 
@@ -46,6 +46,7 @@ var Player = function(x,y,sprite){
 // a handleInput() method.
 
 Player.prototype = Object.create(Enemy.prototype);
+Player.prototype.constructor = Player;
 
 //I shouldn't have to create the render() method
 //because no change is needed from Enemy.render
