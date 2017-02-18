@@ -1,16 +1,18 @@
 // Enemies our player must avoid
-var Enemy = function(x,y,sprite) {
+var Enemy = function(x = -101,y,sprite) { 
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
 
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
-    this.sprite = 'images/enemy-bug.png';
+    this.sprite = sprite ||'images/enemy-bug.png';
 
-    //and these variables because they are needed by
-    //the render function
+    //added these variables using short-circuit evaluation 
+    //reading through the provided code told me they 
+    //needed to be defined
     this.x= x;
-    this.y= y;
+    this.y= y || 100;
+
 };
 
 // Update the enemy's position, required method for game
@@ -34,13 +36,6 @@ Enemy.prototype.render = function() {
 // Now write your own player class
 
 //creating an instance of the Enemy class
-
-/* building the Player class this way seems 
-more sucure/ correct way rather than 
-    var player = new Enemy(x,y,sprite);
-but I really dont fully understand how the created 
-instance above would have any cons ...
-*/
 
 var Player = function(x,y,sprite){
     Enemy.call(this,x,y,sprite);
