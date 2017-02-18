@@ -8,8 +8,10 @@ var Enemy = function(x = -101,y,sprite) {
     this.sprite = sprite ||'images/enemy-bug.png';
 
     //added these variables using short-circuit evaluation 
-    //reading through the provided code told me they 
-    //needed to be defined
+    //(||) returns the value of its second operand, if the 
+    //first one is falsy, otherwise the value of the first 
+    //operand is returned.
+  
     this.x= x;
     this.y= y || 100;
 
