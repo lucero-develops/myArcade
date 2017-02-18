@@ -26,7 +26,7 @@ Enemy.prototype.update = function(dt) {
 
     //Some research on requestAnimationFrame lead me to 
     //test this possible solution 
-	this.x += 1000 * dt; // Increase 'x' by units per millisecond
+	this.x += 200 * dt; // Increase 'x' by units per millisecond
 
 };
 
@@ -52,39 +52,12 @@ Player.prototype.constructor = Player;
 //because no change is needed from Enemy.render
 
 Player.prototype.update = function() {
-    /* thinking about the Player class the 
-    only thing to update at the moment would be 
-    x and y cordinates. */
+    //need to define
 
-    this.x = this.x;
-    this.y = this.y;
-
-    //My thinking is that the scope with catch
-    //Players x and y values
 };
-//console log is saying this isn't a function...
 
 Player.prototype.handleInput = function() {
-    //thinking about what this has to do a switch statment
-    //seems nice and simple , this    should work , also 
-    //again hoping x and y  are within scoop
-
-    switch(this){
-        case 'left':
-            this.x--;
-            break;
-        case 'up':
-            this.y--;
-            break;
-        case 'right':
-            this.x++;
-            break;
-        case 'down':
-            this.y++;
-            break;
-        
-    }
-
+    //need to define 
 };
 
 
@@ -94,14 +67,15 @@ Player.prototype.handleInput = function() {
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
 
-// Testing this , not thinking of Enemy now 
-// I'm am just trying to get the clear all the errors in
-//the console log
-var E1 = new Enemy();
-var E2 = new Enemy();
-var allEnemies =[E1,E2];
+// Testing this ,  trying to get the clear all the 
+//errors in the console log
+var e1 = new Enemy();
+var e2 = new Enemy();
+var e3 = new Enemy();
+var allEnemies =[e1,e2,e3];
 
-
+//Instantiating player
+var player = new Player(200,400,'images/char-boy.png');
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
