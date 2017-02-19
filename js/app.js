@@ -1,5 +1,5 @@
 // Enemies our player must avoid
-var Enemy = function(x = -101,y,sprite) { 
+var Enemy = function(x = -101,y,sprite,gameOn = true) { 
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
 
@@ -13,7 +13,8 @@ var Enemy = function(x = -101,y,sprite) {
     //operand is returned.
   
     this.x= x;
-    this.y= y || 100;
+    this.y= y || Math.floor(Math.random() * 222 + 83);
+    this.gameOn = gameOn; 
 
 };
 
@@ -26,7 +27,7 @@ Enemy.prototype.update = function(dt) {
 
     //Some research on requestAnimationFrame lead me to 
     //test this possible solution 
-	this.x += 200 * dt; // Increase 'x' by units per millisecond
+	this.x += 2 * dt; // Increase 'x' by units per millisecond
 
 };
 
@@ -52,14 +53,40 @@ Player.prototype.constructor = Player;
 //because no change is needed from Enemy.render
 
 Player.prototype.update = function() {
-    //need to define
+    this.x = this.x;
+    this.y = this.y;
+
 
 };
 
-Player.prototype.handleInput = function() {
-    //need to define 
-};
+Player.prototype.handleInput = function(pInput) {
+    switch (pInput) {
+        case 'left':
+            if (this.x > 0) {
+                this.x -= 101;
+            }
+            break;
 
+        case 'up':
+            if (this.y > 0) {
+                this.y -= 83;
+            }
+            break;
+
+        case 'right':
+            if (this.x < 402) {
+                this.x += 101;
+            }
+            break;
+
+        case 'down':
+            if (this.y < 400) {
+                this.y += 83;
+            }
+            break;
+        }
+
+    };
 
 
 
@@ -67,15 +94,16 @@ Player.prototype.handleInput = function() {
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
 
-// Testing this ,  trying to get the clear all the 
-//errors in the console log
-var e1 = new Enemy();
-var e2 = new Enemy();
-var e3 = new Enemy();
-var allEnemies =[e1,e2,e3];
+
+
+var enemies = 3;
+var allEnemies = [];
+for (var i = 0; i < enemies; i++) {
+    allEnemies.push(new Enemy());
+}
 
 //Instantiating player
-var player = new Player(200,400,'images/char-boy.png');
+var player = new Player(200,405,'images/char-boy.png');
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.

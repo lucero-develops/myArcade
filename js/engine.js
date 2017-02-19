@@ -81,6 +81,8 @@ var Engine = (function(global) {
     function update(dt) {
         updateEntities(dt);
         // checkCollisions();
+        updateEntities(dt + 1);
+
     }
 
     /* This is called by the update function and loops through all of the
