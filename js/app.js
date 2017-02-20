@@ -1,5 +1,7 @@
+var enemyY =[312,229,146,63]
+var enemyX =[-101,0,101,202,303,404]
 // Enemies our player must avoid
-var Enemy = function(x = -101,y,sprite,gameOn = true) { 
+var Enemy = function(x,y,sprite,gameOn = true) { 
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
 
@@ -12,9 +14,9 @@ var Enemy = function(x = -101,y,sprite,gameOn = true) {
     //first one is falsy, otherwise the value of the first 
     //operand is returned.
   
-    this.x= x;
-    this.y= y || Math.floor(Math.random() * 222 + 83);
-    this.gameOn = gameOn; 
+    this.x= x || enemyX[Math.floor(Math.random() * enemyX.length)];
+    this.y= y || enemyY[Math.floor(Math.random() * enemyY.length)];
+    this.gameOn = gameOn || false; 
 
 };
 
@@ -27,7 +29,11 @@ Enemy.prototype.update = function(dt) {
 
     //Some research on requestAnimationFrame lead me to 
     //test this possible solution 
-	this.x += 2 * dt; // Increase 'x' by units per millisecond
+	this.x += 50 * dt; // Increase 'x' by units per millisecond
+    if(this.x>505){
+        this.x = enemyX[Math.floor(Math.random() * enemyX.length)];
+        this.y = enemyY[Math.floor(Math.random() * enemyY.length)];
+    }
 
 };
 
@@ -55,11 +61,22 @@ Player.prototype.constructor = Player;
 Player.prototype.update = function() {
     this.x = this.x;
     this.y = this.y;
+};
 
+Player.prototype.win = function(){
+    if(this.y < 63){
+        player.x = 200;
+        player.y = 405;
+    };
+};
 
+Player.prototype.render = function() {
+    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+    this.win();
 };
 
 Player.prototype.handleInput = function(pInput) {
+
     switch (pInput) {
         case 'left':
             if (this.x > 0) {
@@ -84,8 +101,7 @@ Player.prototype.handleInput = function(pInput) {
                 this.y += 83;
             }
             break;
-        }
-
+        };
     };
 
 
@@ -96,7 +112,7 @@ Player.prototype.handleInput = function(pInput) {
 
 
 
-var enemies = 3;
+var enemies = 1;
 var allEnemies = [];
 for (var i = 0; i < enemies; i++) {
     allEnemies.push(new Enemy());
