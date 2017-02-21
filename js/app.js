@@ -1,7 +1,8 @@
-var enemyY =[312,229,146,63]
-var enemyX =[-101,0,101,202,303,404]
+var enemyY =[312, 229, 229, 146,146, 146, 63, 63, 63, 63];
+var enemyX =[-101,-101, 0, 0, 0, 75, 200, 300];
+
 // Enemies our player must avoid
-var Enemy = function(x,y,sprite,gameOn = true) { 
+var Enemy = function(x = -101,y,sprite, height =171, width = 101 ) { 
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
 
@@ -13,11 +14,11 @@ var Enemy = function(x,y,sprite,gameOn = true) {
     //(||) returns the value of its second operand, if the 
     //first one is falsy, otherwise the value of the first 
     //operand is returned.
-  
-    this.x= x || enemyX[Math.floor(Math.random() * enemyX.length)];
-    this.y= y || enemyY[Math.floor(Math.random() * enemyY.length)];
-    this.gameOn = gameOn || false; 
 
+    this.x = x;
+    this.y = y || enemyY[Math.floor(Math.random() * enemyY.length)];
+    this.height = height;
+    this.width = width;
 };
 
 // Update the enemy's position, required method for game
@@ -27,13 +28,16 @@ Enemy.prototype.update = function(dt) {
     // which will ensure the game runs at the same speed for
     // all computers.checkout
 
+    //Gives the enemy animation random levels of speed
+    var speed = [50,50,50,111,222,222,333,333];
+    var  n = speed[Math.floor(Math.random() * speed.length)];
     //Some research on requestAnimationFrame lead me to 
-    //test this possible solution 
-	this.x += 50 * dt; // Increase 'x' by units per millisecond
+    //this solution 
+	this.x += n * dt; 
     if(this.x>505){
-        this.x = enemyX[Math.floor(Math.random() * enemyX.length)];
+    		this.x = enemyX[Math.floor(Math.random() * enemyX.length)];
         this.y = enemyY[Math.floor(Math.random() * enemyY.length)];
-    }
+    };
 
 };
 
@@ -46,8 +50,8 @@ Enemy.prototype.render = function() {
 
 //creating an instance of the Enemy class
 
-var Player = function(x,y,sprite){
-    Enemy.call(this,x,y,sprite);
+var Player = function(x,y,sprite, height, width){
+    Enemy.call(this,x,y,sprite, height, width);
 };
 // This class requires an update(), render() and
 // a handleInput() method.
@@ -61,8 +65,13 @@ Player.prototype.constructor = Player;
 Player.prototype.update = function() {
     this.x = this.x;
     this.y = this.y;
+    //this.checkCollisions(allEnemies);
 };
 
+Player.prototype.checkCollisions = function(e){
+   //
+
+};
 Player.prototype.win = function(){
     if(this.y < 63){
         player.x = 200;
@@ -72,6 +81,9 @@ Player.prototype.win = function(){
 
 Player.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+
+    //called this method here, so player would render in 
+    //in the water blocks before resetting
     this.win();
 };
 
@@ -112,7 +124,7 @@ Player.prototype.handleInput = function(pInput) {
 
 
 
-var enemies = 1;
+var enemies = 4;
 var allEnemies = [];
 for (var i = 0; i < enemies; i++) {
     allEnemies.push(new Enemy());
