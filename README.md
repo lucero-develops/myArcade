@@ -1,15 +1,21 @@
 # myArcade
 
 Udacity's FEND Project: Arcade Game Clone. 
-_add a description_
+
+_This is a simple game, all you have to do is make it to the water.
 
 
 ## Getting Setup
-_describe everything that needs to be done in order to 
-play the game sucessfully_
+Clone or fork the respository and 
+open index.html in your favorite broswer 
 
 ## Game controls
-_list game info and controls_
+only the arrows work , you may go up, down,
+left and right.  If you cant move in a 
+direction you are at a game border.
+
+
+
 
 
 

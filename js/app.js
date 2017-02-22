@@ -1,13 +1,17 @@
+
+//these arrays help make the enemy starting point vary.
 var enemyY =[312, 229, 229, 146,146, 146, 63, 63, 63, 63];
 var enemyX =[-101,-101, 0, 0, 0, 75, 200, 300];
 
 // Enemies our player must avoid
-var Enemy = function(x = -101,y,sprite, height =171, width = 101 ) { 
+var Enemy = function(x = -101, y, sprite, height =40, width = 55 ){ 
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
 
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
+
+    //Using a condition like this is pretty sweet 
     this.sprite = sprite ||'images/enemy-bug.png';
 
     //added these variables using short-circuit evaluation 
@@ -16,7 +20,9 @@ var Enemy = function(x = -101,y,sprite, height =171, width = 101 ) {
     //operand is returned.
 
     this.x = x;
+    //genarates a differnt starting point
     this.y = y || enemyY[Math.floor(Math.random() * enemyY.length)];
+    //these are created for use in collision
     this.height = height;
     this.width = width;
 };
@@ -35,6 +41,7 @@ Enemy.prototype.update = function(dt) {
     //this solution 
 	this.x += n * dt; 
     if(this.x>505){
+        //creates different starting locations
     		this.x = enemyX[Math.floor(Math.random() * enemyX.length)];
         this.y = enemyY[Math.floor(Math.random() * enemyY.length)];
     };
@@ -65,14 +72,27 @@ Player.prototype.constructor = Player;
 Player.prototype.update = function() {
     this.x = this.x;
     this.y = this.y;
-    //this.checkCollisions(allEnemies);
-};
-
-Player.prototype.checkCollisions = function(e){
-   //
+    //inputting the entire array allEnemies
+    this.checkCollisions(allEnemies);
 
 };
-Player.prototype.win = function(){
+
+Player.prototype.checkCollisions = function(enemy){
+	var e =enemy;
+	for(var i=0; i < e.length; i++){
+		if (this.x < e[i].x + e[i].width &&
+		   this.x + this.width > e[i].x &&
+		   this.y < e[i].y + e[i].height &&
+		   this.height + this.y > e[i].y) {
+            alert("Try again");
+            this.x = 200;
+		  	this.y = 405;
+		};	
+	}
+};
+
+//test if players objective is achieved, GOOD ON YA MATE!
+Player.prototype.GoodOnYa = function(){
     if(this.y < 63){
         player.x = 200;
         player.y = 405;
@@ -83,8 +103,8 @@ Player.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 
     //called this method here, so player would render in 
-    //in the water blocks before resetting
-    this.win();
+    //in the water blocks before resetting 
+    this.GoodOnYa();
 };
 
 Player.prototype.handleInput = function(pInput) {
@@ -123,15 +143,16 @@ Player.prototype.handleInput = function(pInput) {
 // Place the player object in a variable called player
 
 
-
-var enemies = 4;
+//setup this up so you can easily implement 
+//levels if you wanted to , for now I like 5.
+var enemies = 5;
 var allEnemies = [];
 for (var i = 0; i < enemies; i++) {
     allEnemies.push(new Enemy());
 }
 
-//Instantiating player
-var player = new Player(200,405,'images/char-boy.png');
+//Instantiating player           35 is height, width doesn't need to change
+var player = new Player(200,405,'images/char-boy.png',35);
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
