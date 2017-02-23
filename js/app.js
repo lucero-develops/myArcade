@@ -1,4 +1,4 @@
-
+'use strict';
 //these arrays help make the enemy starting point vary.
 var enemyY =[312, 229, 229, 146,146, 146, 63, 63, 63, 63];
 var enemyX =[-101,-101, 0, 0, 0, 75, 200, 300];
@@ -81,21 +81,21 @@ Player.prototype.checkCollisions = function(enemy){
 	var e =enemy;
 	for(var i=0; i < e.length; i++){
 		if (this.x < e[i].x + e[i].width &&
-		   this.x + this.width > e[i].x &&
-		   this.y < e[i].y + e[i].height &&
-		   this.height + this.y > e[i].y) {
-            alert("Try again");
-            this.x = 200;
+		  this.x + this.width > e[i].x &&
+		  this.y < e[i].y + e[i].height &&
+		  this.height + this.y > e[i].y){
+        alert("Try again");
+        this.x = 200;
 		  	this.y = 405;
-		};	
+			};	
 	}
 };
 
 //test if players objective is achieved, GOOD ON YA MATE!
 Player.prototype.GoodOnYa = function(){
     if(this.y < 63){
-        player.x = 200;
-        player.y = 405;
+        this.x = 200;
+        this.y = 405;
     };
 };
 
